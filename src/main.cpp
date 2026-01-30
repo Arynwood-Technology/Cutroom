@@ -41,6 +41,8 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 #ifndef NODBUS
 #include <KDBusService>
+#include <QDBusConnection>
+#include "mainwindow.h"
 #endif
 
 #include <KStyleManager>
@@ -568,6 +570,15 @@ int main(int argc, char *argv[])
         result = EXIT_CLEAN_RESTART;
     } else {
         pCore->initGUI(parser.value(mltPathOption), app.url, clipsToLoad);
+#ifndef NODBUS
+        // Register MainWindow on D-Bus for scripting API access
+        if (auto *win = pCore->window()) {
+            QDBusConnection::sessionBus().registerObject(
+                QStringLiteral("/MainWindow"),
+                static_cast<QObject *>(win),
+                QDBusConnection::ExportScriptableSlots | QDBusConnection::ExportScriptableSignals);
+        }
+#endif
         result = app.exec();
     }
     Core::clean();

@@ -58,6 +58,17 @@ MouseArea {
         Column {
             width: parent.width
             K.MonitorToolButton {
+                id: brushToolButton
+                objectName: "brushTool"
+                iconName: "draw-brush"
+                toolTipText: root.brushMode ? KI18n.i18n("Brush Tool (Active) — Click to switch to Point mode") : KI18n.i18n("Point Tool (Active) — Click to switch to Brush mode")
+                checked: root.brushMode
+                visible: root.maskMode != MaskModeType.MaskPreview
+                onClicked: {
+                    root.brushMode = !root.brushMode
+                }
+            }
+            K.MonitorToolButton {
                 id: fullscreenButton
                 objectName: "fullScreen"
                 iconName: "view-fullscreen"
@@ -92,6 +103,18 @@ MouseArea {
                     } else {
                         barZone.monitorController.maskOpacity = barZone.monitorController.maskOpacity * 2;
                     }
+                }
+            }
+            K.MonitorToolButton {
+                objectName: "overlayMode"
+                iconName: barZone.monitorController.maskOverlayMode === 0 ? "color-fill" : barZone.monitorController.maskOverlayMode === 1 ? "draw-polyline" : "visibility"
+                toolTipText: {
+                    if (barZone.monitorController.maskOverlayMode === 0) return KI18n.i18n("Overlay: Color (click to switch to Boundary)")
+                    if (barZone.monitorController.maskOverlayMode === 1) return KI18n.i18n("Overlay: Boundary (click to switch to Alpha)")
+                    return KI18n.i18n("Overlay: Alpha Channel (click to switch to Color)")
+                }
+                onClicked: {
+                    barZone.monitorController.maskOverlayMode = (barZone.monitorController.maskOverlayMode + 1) % 3
                 }
             }
             K.MonitorToolButton {

@@ -106,6 +106,7 @@ bool QmlManager::setScene(Kdenlive::MonitorId id, SceneType::MonitorSceneType ty
                          Qt::UniqueConnection);
         QObject::connect(root, SIGNAL(addControlRect(double, double, double, double, bool)), m_monitor,
                          SLOT(addControlRect(double, double, double, double, bool)), Qt::UniqueConnection);
+        QObject::connect(root, SIGNAL(addControlStroke(QVariant, bool)), m_monitor, SLOT(addControlStroke(QVariant, bool)), Qt::UniqueConnection);
         QObject::connect(root, SIGNAL(generateMask()), m_monitor, SIGNAL(generateMask()), Qt::UniqueConnection);
         QObject::connect(root, SIGNAL(exitMaskPreview()), m_monitor, SIGNAL(disablePreviewMask()), Qt::UniqueConnection);
         root->setProperty("maskStart", m_monitor->getZoneStart());

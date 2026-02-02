@@ -26,6 +26,7 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #include "multiswitchparamwidget.hpp"
 #include "pointparamwidget.hpp"
 #include "positioneditwidget.hpp"
+#include "shadereditorwidget.h"
 #include "slidewidget.hpp"
 #include "switchparamwidget.hpp"
 #include "urllistparamwidget.h"
@@ -163,6 +164,10 @@ std::pair<AbstractParamWidget *, KeyframeContainer *> AbstractParamWidget::const
     }
     case ParamType::GradientEditor: {
         widget = new GradientEditWidget(model, index, parent);
+        break;
+    }
+    case ParamType::ShaderEditor: {
+        widget = new ShaderEditorWidget(model, index, parent);
         break;
     }
     default:

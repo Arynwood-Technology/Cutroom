@@ -42,6 +42,7 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #ifndef NODBUS
 #include <KDBusService>
 #include <QDBusConnection>
+#include <QDBusError>
 #include "mainwindow.h"
 #endif
 
@@ -571,8 +572,15 @@ int main(int argc, char *argv[])
     } else {
         pCore->initGUI(parser.value(mltPathOption), app.url, clipsToLoad);
 #ifndef NODBUS
-        // Register MainWindow on D-Bus for scripting API access
+        // Register MainWindow on D-Bus for scripting API access.
+        // KDBusService only guarantees single-instance locking, not a stable
+        // well-known name (it may fall back to a per-connection mangled name),
+        // so the plain name the scripting API relies on is claimed explicitly here.
         if (auto *win = pCore->window()) {
+            bool nameOk = QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.kdenlive"));
+            qDebug() << "D-Bus: registerService(org.kde.kdenlive) ->" << nameOk
+                      << "lastError:" << QDBusConnection::sessionBus().lastError().message()
+                      << "baseService:" << QDBusConnection::sessionBus().baseService();
             QDBusConnection::sessionBus().registerObject(
                 QStringLiteral("/MainWindow"),
                 static_cast<QObject *>(win),

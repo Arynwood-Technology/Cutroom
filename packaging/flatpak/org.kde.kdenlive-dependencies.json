@@ -109,6 +109,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
             ],
@@ -343,6 +344,9 @@
                         "url-template": "https://github.com/intel/libva/archive/refs/tags/$version.tar.gz"
                     }
                 }
+            ],
+            "config-opts": [
+                "-Dlibdir=lib"
             ]
         },
         {
@@ -363,6 +367,9 @@
                         "url-template": "https://github.com/intel/libva-utils/archive/refs/tags/$version.tar.gz"
                     }
                 }
+            ],
+            "config-opts": [
+                "-Dlibdir=lib"
             ]
         },
         {
@@ -373,6 +380,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DBUILD_SAMPLES=OFF",
                 "-DBUILD_TESTS=OFF",
@@ -401,6 +409,7 @@
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DBUILD_SAMPLES=OFF",
                 "-DBUILD_TESTS=OFF",
                 "-DBUILD_TOOLS=OFF"
@@ -510,6 +519,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DOPENCV_GENERATE_PKGCONFIG=ON",
                 "-DBUILD_LIST=tracking,dnn,objdetect"
@@ -547,6 +557,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
             ],
             "sources": [
@@ -569,6 +580,7 @@
             "builddir": true,
             "no-make-install": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DBUILD_TESTING=OFF"
             ],
@@ -611,6 +623,7 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DMOD_OPENCV=ON",
                 "-DMOD_GLAXNIMATE=OFF",
                 "-DUSE_LV2=OFF",
@@ -635,6 +648,7 @@
             "name": "Imath",
             "buildsystem": "cmake-ninja",
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DBUILD_TESTING=OFF",
                 "-DPYTHON=OFF"
             ],
@@ -650,7 +664,8 @@
             "name": "opentimelineio",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "config-opts":[
+            "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DOTIO_FIND_IMATH=ON",
                 "-DOTIO_DEPENDENCIES_INSTALL=OFF",
                 "-DBUILD_TESTING=OFF"
@@ -667,6 +682,7 @@
             "name": "kddockwidgets",
             "buildsystem": "cmake-ninja",
             "config-opts": [
+                "-DCMAKE_INSTALL_LIBDIR=lib",
                 "-DKDDockWidgets_FRONTENDS=qtwidgets"
             ],
             "sources": [

@@ -474,9 +474,6 @@ public Q_SLOTS:
     Q_SCRIPTABLE QVariantMap scriptGetTimeRemap(int clipId);
     Q_SCRIPTABLE bool scriptSetTimeRemap(int clipId, const QString &timeMap, int pitch, const QString &imageMode);
 
-    // Speed
-    Q_SCRIPTABLE bool scriptSetClipSpeed(int clipId, double speed, bool pitchCompensate);
-
     // Clip Transform Keyframes
     Q_SCRIPTABLE QVariantList scriptGetClipTransformKeyframes(int clipId);
     Q_SCRIPTABLE bool scriptSetClipTransform(int clipId, int frame, int x, int y, int width, int height, double opacity);
@@ -619,9 +616,6 @@ public Q_SLOTS:
     Q_SCRIPTABLE bool scriptUndo(int steps = 1);
     Q_SCRIPTABLE bool scriptRedo(int steps = 1);
     Q_SCRIPTABLE QString scriptUndoStatus();
-
-    // Additional
-    Q_SCRIPTABLE QVariantList scriptDetectScenes(const QString &binClipId, double threshold = 0.4, int minDuration = 0);
 
     // Selection (clip/composition/subtitle selection) -----------
     Q_SCRIPTABLE QVariantList scriptGetSelection();

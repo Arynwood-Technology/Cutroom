@@ -57,6 +57,8 @@ timeline = project.GetCurrentTimeline()
 
 ## Building
 
+Setting this up on a new machine (flatpak build, D-Bus verification, mcp-kdenlive, ArynCore wiring)? See [SETUP.md](SETUP.md).
+
 Follow the standard Kdenlive [build instructions](dev-docs/build.md). This fork tracks upstream `master`. Additional build requirements:
 
 - **D-Bus**: `-DUSE_DBUS=ON` (enabled by default on Linux, must be explicit on Windows via Craft)

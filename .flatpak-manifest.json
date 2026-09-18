@@ -7,7 +7,6 @@
   "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.llvm21" ],
   "command": "kdenlive",
   "rename-icon": "kdenlive",
-  "desktop-file-name-suffix": " (Nightly)",
   "finish-args": [
     "--device=all",
     "--env=FREI0R_PATH=/app/lib/frei0r-1",
@@ -18,10 +17,12 @@
     "--filesystem=host",
     "--filesystem=xdg-config/kdeglobals:ro",
     "--filesystem=xdg-run/pipewire-0",
+    "--filesystem=/run/systemd/resolve:ro",
     "--own-name=org.kde.kdenlive",
     "--require-version=0.11.4",
     "--share=ipc",
     "--share=network",
+    "--system-talk-name=org.freedesktop.resolve1",
     "--socket=fallback-x11",
     "--socket=pulseaudio",
     "--socket=wayland"

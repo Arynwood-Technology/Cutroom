@@ -366,6 +366,8 @@ QString ProviderModel::replacePlaceholders(QString string, const QString &query,
     string = string.replace("%query%", query);
     string = string.replace("%pagenum%", QString::number(page));
     string = string.replace("%perpage%", QString::number(m_perPage));
+    // page is 1-indexed; offset is 0-indexed, for APIs that paginate by item offset instead of page number
+    string = string.replace("%offset%", QString::number((page - 1) * m_perPage));
     string = string.replace("%shortlocale%", "en-US"); // TODO
     string = string.replace("%clientkey%", m_clientkey);
     string = string.replace("%id%", id);

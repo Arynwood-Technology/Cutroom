@@ -1,0 +1,39 @@
+{
+    "name": "Jamendo",
+    "homepage": "https://www.jamendo.com",
+    "type": "music",
+    "integration": "buildin",
+    "clientkey": "404100dc",
+    "api": {
+        "root": "https://api.jamendo.com/v3.0",
+        "search": {
+            "req": {
+                "path": "/tracks/",
+                "method": "GET",
+                "params": [
+                    { "key": "client_id", "value": "%clientkey%" },
+                    { "key": "format", "value": "json" },
+                    { "key": "limit", "value": "%perpage%" },
+                    { "key": "offset", "value": "%offset%" },
+                    { "key": "order", "value": "relevance" },
+                    { "key": "search", "value": "%query%" }
+                ]
+            },
+            "res": {
+                "format": "json",
+                "resultCount": "headers.results_count",
+                "list": "results",
+                "name": "name",
+                "id": "id",
+                "url": "shareurl",
+                "licenseUrl": "license_ccurl",
+                "author": "artist_name",
+                "authorUrl": "$https://www.jamendo.com/artist/{artist_id}",
+                "duration": "duration",
+                "downloadUrl": "audiodownload",
+                "previewUrl": "audio",
+                "imageUrl": "image"
+            }
+        }
+    }
+}

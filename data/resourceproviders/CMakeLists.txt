@@ -5,6 +5,8 @@ INSTALL (FILES
 
 archiveorg.json
 freesound.json
+jamendo.json
+openverse.json
 pexels_photo.json
 pexels_video.json
 pixabay_photo.json

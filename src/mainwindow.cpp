@@ -3732,10 +3732,17 @@ int MainWindow::scriptAddComposition(const QString &transitionId, int trackId, i
 
 bool MainWindow::scriptRemoveMix(int clipId)
 {
+    // Was calling requestItemDeletion(clipId, true) — Kdenlive's generic
+    // "delete this timeline item" call, unrelated to mixes — which deleted
+    // the whole clip instead of just its mix. Verified live: calling this
+    // on a clip with no mix removed the clip entirely, leaving a gap on the
+    // track. TimelineModel::removeMix() is the real mix-specific API: it
+    // checks whether a mix actually exists on this clip first and no-ops
+    // (returns true) rather than deleting anything if it doesn't.
     auto timeline = getCurrentTimeline();
     if (!timeline || !timeline->model()) return false;
 
-    return timeline->model()->requestItemDeletion(clipId, true);
+    return timeline->model()->removeMix(clipId);
 }
 
 QVariantList MainWindow::scriptGetAvailableTransitions()

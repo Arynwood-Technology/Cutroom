@@ -17,6 +17,13 @@ add_subdirectory(shortcuts)
 add_subdirectory(luts)
 
 install(FILES
+  colorschemes/Purple.colors
+  colorschemes/Pink.colors
+  colorschemes/CutroomDark.colors
+
+  DESTINATION ${KDE_INSTALL_DATADIR}/color-schemes)
+
+install(FILES
   meta_magiclantern.png
   encodingprofiles.rc
   externalproxies.rc

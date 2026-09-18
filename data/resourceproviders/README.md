@@ -183,6 +183,7 @@ For `params` and `header` these of placeholders are available.
 | %shortlocale% | Short local like `en-US` (at the moment always `en-US`) | |
 | %clientkey% | The clients apikey defined in [`clientkey`](#base-structure) | |
 | %id% | Id of the item to fetch urls for | Only for Fetch Download Urls |
+| %offset% | `(%pagenum% - 1) * %perpage%`, i.e. the 0-indexed item offset of the current page | Only for search. For APIs that paginate by item offset instead of page number (e.g. Jamendo) |
 
 #### Templates
 Templates must always start with `$`. Within a template string you can use keys like this `{username}`.

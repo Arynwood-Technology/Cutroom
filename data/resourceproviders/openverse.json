@@ -1,0 +1,35 @@
+{
+    "name": "Openverse",
+    "homepage": "https://openverse.org",
+    "type": "sound",
+    "integration": "buildin",
+    "api": {
+        "root": "https://api.openverse.org/v1",
+        "search": {
+            "req": {
+                "path": "/audio/",
+                "method": "GET",
+                "params": [
+                    { "key": "q", "value": "%query%" },
+                    { "key": "page", "value": "%pagenum%" },
+                    { "key": "page_size", "value": "%perpage%" }
+                ]
+            },
+            "res": {
+                "format": "json",
+                "resultCount": "result_count",
+                "list": "results",
+                "name": "title",
+                "filetype": "filetype",
+                "id": "id",
+                "url": "foreign_landing_url",
+                "licenseUrl": "license_url",
+                "author": "creator",
+                "authorUrl": "creator_url",
+                "downloadUrl": "url",
+                "previewUrl": "url",
+                "imageUrl": "thumbnail"
+            }
+        }
+    }
+}

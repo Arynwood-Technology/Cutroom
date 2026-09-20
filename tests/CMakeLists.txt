@@ -8,6 +8,7 @@ kde_enable_exceptions()
 
 set(KdenliveTest_SOURCES
     aichattest.cpp
+    automationdispatchertest.cpp
     avcurvetest.cpp
     audiolevelstasktest.cpp
     cachetest.cpp

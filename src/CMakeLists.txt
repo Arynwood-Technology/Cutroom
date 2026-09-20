@@ -41,6 +41,7 @@ endif()
 ### Find source files
 add_subdirectory(abstractmodel)
 add_subdirectory(aichat)
+add_subdirectory(automation)
 add_subdirectory(assets)
 add_subdirectory(audiomixer)
 add_subdirectory(bin)

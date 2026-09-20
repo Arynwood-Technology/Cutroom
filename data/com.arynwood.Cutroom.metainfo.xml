@@ -25,7 +25,7 @@
   </description>
   <launchable type="desktop-id">com.arynwood.Cutroom.desktop</launchable>
   <url type="homepage">https://arynwood.com</url>
-  <url type="bugtracker">https://arynwood.com/#contact</url>
+  <url type="bugtracker">https://github.com/Arynwood-Technology/Cutroom/issues</url>
   <url type="vcs-browser">https://github.com/Arynwood-Technology/Cutroom</url>
   <categories>
     <category>AudioVideo</category>

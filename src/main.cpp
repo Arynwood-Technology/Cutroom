@@ -295,20 +295,25 @@ int main(int argc, char *argv[])
     // run beside a stock Kdenlive. The component name and organisation domain stay as they are, because config files, resource lookups and the
     // scripting interface names depend on them.
     const QString cutroomAppId = QStringLiteral("com.arynwood.Cutroom");
-    // Where problems are reported for now: the contact section of the Arynwood site, until there is a public issue tracker. This one address
-    // feeds Help → Report Bug… (see MainWindow::loadContainerActions) and both About texts below.
-    const QString bugReportUrl = QStringLiteral("https://arynwood.com/#contact");
-    QString otherText = i18n("Arynwood Cutroom is a modified version of Kdenlive. Please report problems with it to Arynwood Technology at "
-                             "<a href=\"%1\">%2</a>, not to the KDE project.",
-                             bugReportUrl, QStringLiteral("arynwood.com"));
+    // Where problems are reported: the bug-report form of the project's GitHub repository. That address feeds Help → Report Bug… (see
+    // MainWindow::loadContainerActions) and both About texts below. The contact section of the Arynwood site is named as the way in for
+    // people without a GitHub account.
+    const QString bugReportUrl = QStringLiteral("https://github.com/Arynwood-Technology/Cutroom/issues/new?template=bug_report.yml");
+    const QString contactUrl = QStringLiteral("https://arynwood.com/#contact");
+    QString otherText = i18n("Arynwood Cutroom is a modified version of Kdenlive. Please report problems with it to Arynwood Technology on "
+                             "<a href=\"%1\">GitHub</a>, or through <a href=\"%2\">arynwood.com</a> if you do not use GitHub, not to the KDE project.",
+                             bugReportUrl, contactUrl);
 
     KAboutData aboutData(QByteArray("kdenlive"), i18n("Arynwood Cutroom"), KDENLIVE_VERSION,
                          i18n("An AI-assisted video editor from Arynwood Technology, based on Kdenlive."), KAboutLicense::GPL_V3,
                          i18n("Copyright © 2007–2025 Kdenlive authors\nCutroom changes © 2026 Lorelei Noble; D-Bus scripting API © D-Ogi"),
                          otherText, QStringLiteral("https://arynwood.com"), bugReportUrl);
     // Without this the Authors tab builds a "mailto:" link out of the bug address, which is a web address here.
-    aboutData.setCustomAuthorText(i18n("Please report problems with Arynwood Cutroom at %1, not to the KDE project.", bugReportUrl),
-                                  i18n("Please report problems with Arynwood Cutroom at <a href=\"%1\">arynwood.com</a>, not to the KDE project.", bugReportUrl));
+    aboutData.setCustomAuthorText(i18n("Please report problems with Arynwood Cutroom at %1 (or through %2 if you do not use GitHub), not to the KDE project.",
+                                       bugReportUrl, contactUrl),
+                                  i18n("Please report problems with Arynwood Cutroom on <a href=\"%1\">GitHub</a> (or through <a href=\"%2\">arynwood.com</a> if "
+                                       "you do not use GitHub), not to the KDE project.",
+                                       bugReportUrl, contactUrl));
     // Cutroom additions come first; the upstream Kdenlive credits below are kept exactly as they were.
     aboutData.addAuthor(i18n("Lorelei Noble"), i18n("Arynwood Cutroom: the assistant panel, MCP tooling and branding"), QStringLiteral("lorelei@arynwood.com"),
                         QStringLiteral("https://arynwood.com"));

@@ -132,8 +132,10 @@ Additional build requirements:
 
 ## Reporting problems, and funding
 
-- **Problems with Cutroom** go to Arynwood, not to KDE: [arynwood.com](https://arynwood.com/#contact). There is no public
-  issue tracker yet. Help → Report Bug… opens the same page.
+- **Problems with Cutroom** go to Arynwood, not to KDE: use the
+  [bug-report form](https://github.com/Arynwood-Technology/Cutroom/issues/new?template=bug_report.yml) on GitHub, which
+  Help → Report Bug… opens. If you do not use GitHub, write through [arynwood.com](https://arynwood.com/#contact).
+  Security problems should be reported privately (see [SECURITY.md](SECURITY.md)), not in an issue.
 - **Funding:** Cutroom has no donation route of its own yet. Until there is a stable release, if you want to support the
   work, support the project it is built on: [Kdenlive](https://kdenlive.org/fund).
 

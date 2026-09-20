@@ -75,7 +75,7 @@ Checks, with what each one needs to show:
 | First run | Welcome screen says Arynwood Cutroom, shows the tree, credits Kdenlive; main window in the Purple scheme; window title ends in "Arynwood Cutroom" |
 | Panel | Nothing opens at startup. The "Launch Assistant" button (Arynwood tree, top right of the menu bar, left of the workspace tabs) and View → Cutroom Assistant both open it as a tab in the Clip Monitor group, not a floating window, with the cursor in the message box. Clicking the button again with the panel hidden behind another tab brings it to the front. |
 | Identity | Run the **installed** flatpak (`flatpak run com.arynwood.Cutroom`, with the private bus and display below), not `flatpak-builder --run`: the app stays up; `ListNames` on the private bus shows `com.arynwood.Cutroom` and names below it (`com.arynwood.Cutroom.kdenlive...`) and **no** `org.kde.kdenlive*` (use `dbus-send --bus=unix:path=<bus>`, not `--address`); the window's `_KDE_NET_WM_DESKTOP_FILE` is `com.arynwood.Cutroom`; `gdbus introspect --session --dest com.arynwood.Cutroom --object-path /MainWindow` shows the interface **`org.kde.kdenlive.MainWindow`**; and a real `kdenlive-api` call (`KdenliveDBus()._call("scriptGetProjectFps")`, run with `DBUS_SESSION_BUS_ADDRESS` set to the private bus) returns a value |
-| Bug reports | Help → Report Bug… opens `https://arynwood.com/#contact` and no KDE dialog; About → Authors and About → About both say to report to Arynwood, not KDE. There is no Donate item in the Help menu of this build; the only donation links are on the splash screens and go to `kdenlive.org/fund`, deliberately, until Cutroom has its own donation route |
+| Bug reports | Help → Report Bug… opens the GitHub bug-report form (`https://github.com/Arynwood-Technology/Cutroom/issues/new?template=bug_report.yml`) and no KDE dialog; About → About and About → Authors both name GitHub, with arynwood.com as the way in without a GitHub account, and say not to report to KDE. There is no Donate item in the Help menu of this build; the only donation links are on the splash screens and go to `kdenlive.org/fund`, deliberately, until Cutroom has its own donation route |
 | Default model | The first tool-capable model is picked, not the first alphabetically |
 | Allow | Read tools run unasked; `append_clips` waits for approval; nothing changes before Allow; afterwards the timeline has the clips |
 | Deny | After Deny the clip count is unchanged and the model is told |
@@ -124,9 +124,9 @@ Traps met while doing this:
 
 Found by the tests above and not yet changed, because each needs a decision:
 
-- **Report Bug** now goes to `https://arynwood.com/#contact`, set once as the bug
-  address in `main.cpp` (a stopgap until there is a public issue tracker: change
-  that one string). **Donations** stay with the Kdenlive project on purpose, until
+- **Report Bug** goes to the GitHub bug-report form of `Arynwood-Technology/Cutroom`, set
+  once as the bug address in `main.cpp`; the website contact is named for people without a
+  GitHub account. **Donations** stay with the Kdenlive project on purpose, until
   there is a stable release and a donation route of its own.
 - **The Handbook** (F1) opens Kdenlive's documentation.
 - **Identity on Linux is done**: the application ID is `com.arynwood.Cutroom`, with its

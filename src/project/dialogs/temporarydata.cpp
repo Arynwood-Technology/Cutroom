@@ -634,7 +634,7 @@ void TemporaryData::gotFolderSize(KIO::filesize_t total)
         path.remove(0, 1);
         item->setText(0, m_processingDirectory + QStringLiteral(" (%1)").arg(QUrl::fromLocalFile(path).fileName()));
         if (QFile::exists(path)) {
-            item->setIcon(0, QIcon::fromTheme(QStringLiteral("kdenlive")));
+            item->setIcon(0, QIcon::fromTheme(QStringLiteral("com.arynwood.Cutroom"), QIcon(QStringLiteral(":/pics/arynwood-logo.png"))));
         } else {
             item->setIcon(0, QIcon::fromTheme(QStringLiteral("dialog-close")));
         }

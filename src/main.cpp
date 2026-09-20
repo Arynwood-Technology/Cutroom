@@ -290,9 +290,11 @@ int main(int argc, char *argv[])
     KLocalizedString::setApplicationDomain("kdenlive");
 
     // Create KAboutData
-    // Arynwood Cutroom is a modified Kdenlive, so its problems must not land in KDE's bug tracker. Only the display name and texts are
-    // changed here: the component name, desktop file and organisation domain stay as they are, because config files, the D-Bus service
-    // (org.kde.kdenlive) and the scripting tools built on it depend on them.
+    // Arynwood Cutroom is a modified Kdenlive, so its problems must not land in KDE's bug tracker. Only what the user sees and what the operating
+    // system registers is Cutroom's own: the display name and texts, and the application ID below (desktop file name, D-Bus service), which lets it
+    // run beside a stock Kdenlive. The component name and organisation domain stay as they are, because config files, resource lookups and the
+    // scripting interface names depend on them.
+    const QString cutroomAppId = QStringLiteral("com.arynwood.Cutroom");
     // Where problems are reported for now: the contact section of the Arynwood site, until there is a public issue tracker. This one address
     // feeds Help → Report Bug… (see MainWindow::loadContainerActions) and both About texts below.
     const QString bugReportUrl = QStringLiteral("https://arynwood.com/#contact");
@@ -335,7 +337,10 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Massimo Stella"), i18n("Core team member, expert advice, testing"));
 
     aboutData.setTranslator(i18n("NAME OF TRANSLATORS"), i18n("EMAIL OF TRANSLATORS"));
-aboutData.setOrganizationDomain(QByteArray("kde.org"));
+    // KDBusService names its D-Bus service "<organisation domain reversed>.<component name>". Inside a flatpak the program may only own names below
+    // its own application ID, and with "kde.org" it would ask for org.kde.kdenlive.* and be refused, which makes it quit at start. This value reverses
+    // to com.arynwood.Cutroom, so the service is com.arynwood.Cutroom.kdenlive*. It is a name for that purpose, not a real host name.
+    aboutData.setOrganizationDomain(QByteArray("Cutroom.arynwood.com"));
 
     // The credit that the GPL and Kdenlive's own name call for: what this program is built on, and which version.
     aboutData.addComponent(i18n("Kdenlive"), i18n("The video editor Arynwood Cutroom is based on."), KDENLIVE_FULL_VERSION_STRING,
@@ -346,7 +351,7 @@ aboutData.setOrganizationDomain(QByteArray("kde.org"));
     aboutData.addComponent(i18n("FFmpeg"), i18n("A complete, cross-platform solution to record, convert and stream audio and video."),
                            QString::fromLocal8Bit(av_version_info()), QStringLiteral("https://ffmpeg.org"));
 
-    aboutData.setDesktopFileName(QStringLiteral("org.kde.kdenlive"));
+    aboutData.setDesktopFileName(cutroomAppId);
     aboutData.setProgramLogo(QImage(QStringLiteral(":/pics/arynwood-logo.png")));
 
     // Set application data
@@ -598,8 +603,8 @@ aboutData.setOrganizationDomain(QByteArray("kde.org"));
         // well-known name (it may fall back to a per-connection mangled name),
         // so the plain name the scripting API relies on is claimed explicitly here.
         if (auto *win = pCore->window()) {
-            bool nameOk = QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.kdenlive"));
-            qDebug() << "D-Bus: registerService(org.kde.kdenlive) ->" << nameOk
+            bool nameOk = QDBusConnection::sessionBus().registerService(cutroomAppId);
+            qDebug() << "D-Bus: registerService(" << cutroomAppId << ") ->" << nameOk
                       << "lastError:" << QDBusConnection::sessionBus().lastError().message()
                       << "baseService:" << QDBusConnection::sessionBus().baseService();
             QDBusConnection::sessionBus().registerObject(

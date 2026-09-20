@@ -3,13 +3,13 @@
 
 function get_files
 {
-    echo org.kde.kdenlive.xml
+    echo com.arynwood.Cutroom.xml
 }
 
 function po_for_file
 {
     case "$1" in
-       org.kde.kdenlive.xml)
+       com.arynwood.Cutroom.xml)
            echo kdenlive_xml_mimetypes.po
        ;;
     esac
@@ -18,7 +18,7 @@ function po_for_file
 function tags_for_file
 {
     case "$1" in
-       org.kde.kdenlive.xml)
+       com.arynwood.Cutroom.xml)
            echo comment
        ;;
     esac

@@ -11,6 +11,14 @@ ecm_install_icons(ICONS
   128-apps-kdenlive.png
   256-apps-kdenlive.png
   512-apps-kdenlive.png
+  16-apps-com.arynwood.Cutroom.png
+  22-apps-com.arynwood.Cutroom.png
+  32-apps-com.arynwood.Cutroom.png
+  48-apps-com.arynwood.Cutroom.png
+  64-apps-com.arynwood.Cutroom.png
+  128-apps-com.arynwood.Cutroom.png
+  256-apps-com.arynwood.Cutroom.png
+  512-apps-com.arynwood.Cutroom.png
   32-mimetypes-application-x-kdenlivetitle.png
   64-mimetypes-application-x-kdenlivetitle.png
   128-mimetypes-application-x-kdenlivetitle.png

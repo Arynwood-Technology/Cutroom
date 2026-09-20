@@ -1,12 +1,11 @@
 {
-  "id": "org.kde.kdenlive",
+  "id": "com.arynwood.Cutroom",
   "default-branch": "master",
   "runtime": "org.kde.Platform",
   "runtime-version": "6.11",
   "sdk": "org.kde.Sdk",
   "sdk-extensions" : [ "org.freedesktop.Sdk.Extension.llvm21" ],
   "command": "kdenlive",
-  "rename-icon": "kdenlive",
   "finish-args": [
     "--device=all",
     "--env=FREI0R_PATH=/app/lib/frei0r-1",
@@ -18,7 +17,7 @@
     "--filesystem=xdg-config/kdeglobals:ro",
     "--filesystem=xdg-run/pipewire-0",
     "--filesystem=/run/systemd/resolve:ro",
-    "--own-name=org.kde.kdenlive",
+    "--own-name=com.arynwood.Cutroom",
     "--require-version=0.11.4",
     "--share=ipc",
     "--share=network",

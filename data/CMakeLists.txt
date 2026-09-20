@@ -37,10 +37,10 @@ install(FILES
 install(FILES kdenlive.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 install(FILES profiles.xml DESTINATION ${KDE_INSTALL_DATADIR}${DATA_INSTALL_PREFIX}/export)
-install(FILES org.kde.kdenlive.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
-install(FILES org.kde.kdenlive.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES com.arynwood.Cutroom.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES com.arynwood.Cutroom.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 
 find_package(SharedMimeInfo REQUIRED)
-install(FILES org.kde.kdenlive.xml westley.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
+install(FILES com.arynwood.Cutroom.xml westley.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
 update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
 

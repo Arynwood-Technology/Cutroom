@@ -175,10 +175,16 @@ SPDX-FileCopyrightText = "Jean-Baptiste Mardelle, Juku Trump"
 SPDX-License-Identifier = "CC0-1.0"
 
 [[annotations]]
-path = "data/org.kde.kdenlive.**"
+path = "data/com.arynwood.Cutroom.xml"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "Kdenlive translators"
 SPDX-License-Identifier = "GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL"
+
+[[annotations]]
+path = "data/icons/*-apps-com.arynwood.Cutroom.png"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Lorelei Noble"
+SPDX-License-Identifier = "LicenseRef-Arynwood-Logo"
 
 [[annotations]]
 path = "data/meta_magiclantern.png"

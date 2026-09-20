@@ -79,6 +79,9 @@ private:
 class /*KDENLIVECORE_EXPORT*/ MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
+    // The name of the scripting interface (the script* slots below) on D-Bus. Without this QtDBus derives it from the organisation domain, and
+    // main.cpp sets that to something Cutroom-specific, so the interface would silently be renamed and every client would break.
+    Q_CLASSINFO("D-Bus Interface", "org.kde.kdenlive.MainWindow")
 
 public:
     friend class RenderWidget;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    SPDX-FileCopyrightText: 2026 Arynwood Technology
+    SPDX-License-Identifier: CC0-1.0
+-->
+<component type="desktop-application">
+  <id>com.arynwood.Cutroom</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <developer id="com.arynwood">
+    <name translate="no">Arynwood Technology</name>
+  </developer>
+  <name>Arynwood Cutroom</name>
+  <summary>AI-assisted video editor</summary>
+  <description>
+    <p>Arynwood Cutroom is a video editor built on Kdenlive, with an assistant inside the editor window. Describe an edit in plain language and the Cutroom Assistant carries it out on your timeline, using a model that runs on your own computer, and asks before it changes your project.</p>
+    <p>What it adds to Kdenlive:</p>
+    <ul>
+      <li>The Cutroom Assistant panel, opened from the Launch Assistant button</li>
+      <li>A scripting interface and 183 tools that AI agents and scripts can use to operate the editor</li>
+      <li>Jamendo and Openverse as additional Creative Commons media sources</li>
+    </ul>
+    <p>This is an early alpha. The assistant needs Ollama, or another OpenAI-compatible service, with a model that supports tool calling, and the mcp-kdenlive tool server. Small local models are unreliable at multi-step edits, which is why the assistant asks before every change by default.</p>
+    <p>Arynwood Cutroom is a modified version of Kdenlive and is not made or endorsed by the KDE project or the Kdenlive team. Kdenlive project files open in both.</p>
+  </description>
+  <launchable type="desktop-id">com.arynwood.Cutroom.desktop</launchable>
+  <url type="homepage">https://arynwood.com</url>
+  <url type="bugtracker">https://arynwood.com/#contact</url>
+  <url type="vcs-browser">https://github.com/Arynwood-Technology/Cutroom</url>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Video</category>
+  </categories>
+  <provides>
+    <binary>kdenlive</binary>
+    <mediatype>application/x-kdenlive</mediatype>
+  </provides>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-09-20" type="development">
+      <description>
+        <p>First alpha: the Cutroom Assistant panel with its Launch Assistant button, Arynwood branding, and bug reports directed to Arynwood.</p>
+      </description>
+    </release>
+  </releases>
+</component>

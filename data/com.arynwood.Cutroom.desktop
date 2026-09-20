@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2026 Arynwood Technology
+# SPDX-License-Identifier: CC0-1.0
+[Desktop Entry]
+Type=Application
+Name=Arynwood Cutroom
+GenericName=Video Editor
+Comment=AI-assisted video editor, based on Kdenlive
+Exec=kdenlive %F
+Icon=com.arynwood.Cutroom
+StartupWMClass=kdenlive
+MimeType=application/x-kdenlive;application/vnd.mlt+xml;video/mp4;video/x-matroska;video/webm;video/quicktime;video/x-msvideo;video/mpeg;
+Categories=Qt;AudioVideo;AudioVideoEditing;
+Keywords=editing;video;audio;mlt;ai;assistant;kdenlive;
+X-DBUS-ServiceName=com.arynwood.Cutroom

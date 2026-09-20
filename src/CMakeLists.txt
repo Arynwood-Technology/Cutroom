@@ -40,6 +40,7 @@ endif()
 
 ### Find source files
 add_subdirectory(abstractmodel)
+add_subdirectory(aichat)
 add_subdirectory(assets)
 add_subdirectory(audiomixer)
 add_subdirectory(bin)
@@ -289,6 +290,7 @@ target_link_libraries(kdenliveLib PUBLIC
     Qt${QT_MAJOR_VERSION}::Concurrent
     Qt${QT_MAJOR_VERSION}::Multimedia
     Qt${QT_MAJOR_VERSION}::MultimediaWidgets
+    Qt${QT_MAJOR_VERSION}::Network
     Qt${QT_MAJOR_VERSION}::NetworkAuth
     Qt${QT_MAJOR_VERSION}::SvgWidgets
     # Qt${QT_MAJOR_VERSION}::Test

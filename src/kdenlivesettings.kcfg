@@ -1700,4 +1700,55 @@
       <default>true</default>
     </entry>
     </group>
+  <group name="aiassistant">
+    <entry name="aiProvider" type="Int">
+      <label>Assistant model provider: 0 for Ollama, 1 for an OpenAI-compatible endpoint.</label>
+      <default>0</default>
+    </entry>
+    <entry name="aiOllamaUrl" type="String">
+      <label>Address of the Ollama server used by the assistant.</label>
+      <default>http://127.0.0.1:11434</default>
+    </entry>
+    <entry name="aiOpenAiUrl" type="String">
+      <label>API root of the OpenAI-compatible endpoint used by the assistant.</label>
+      <default>https://api.openai.com/v1</default>
+    </entry>
+    <entry name="aiApiKey" type="Password">
+      <label>API key for the OpenAI-compatible endpoint. Stored obfuscated, not encrypted.</label>
+      <default></default>
+    </entry>
+    <entry name="aiOllamaModel" type="String">
+      <label>Model the assistant uses on the Ollama server.</label>
+      <default></default>
+    </entry>
+    <entry name="aiOpenAiModel" type="String">
+      <label>Model the assistant uses on the OpenAI-compatible endpoint.</label>
+      <default></default>
+    </entry>
+    <entry name="aiMcpUrl" type="String">
+      <label>Address of the mcp-kdenlive tool server the assistant runs its tools through.</label>
+      <default>http://127.0.0.1:8420/mcp</default>
+    </entry>
+    <entry name="aiContextSize" type="Int">
+      <label>Context window, in tokens, the assistant requests from the model.</label>
+      <default>16384</default>
+      <min>2048</min>
+    </entry>
+    <entry name="aiMaxToolRounds" type="Int">
+      <label>How many rounds of tool calls the assistant may take for one request.</label>
+      <default>8</default>
+      <min>1</min>
+      <max>30</max>
+    </entry>
+    <entry name="aiRelevantTools" type="Bool">
+      <label>Send the model only the tools that look relevant to the request instead of all of them.</label>
+      <default>true</default>
+    </entry>
+    <entry name="aiApproval" type="Int">
+      <label>When the assistant asks before running a tool: 0 only for risky ones, 1 for every change to the project, 2 never.</label>
+      <default>1</default>
+      <min>0</min>
+      <max>2</max>
+    </entry>
+  </group>
 </kcfg>

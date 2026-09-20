@@ -196,7 +196,7 @@ Window {
                 anchors.fill: parent
                 anchors.margins: 5
                 anchors.bottomMargin: 10
-                source: "qrc:/pics/splash-background.webp"
+                source: "qrc:/pics/arynwood-splash.png"
                 verticalAlignment: Image.AlignTop
                 fillMode: Image.PreserveAspectCrop
 
@@ -206,7 +206,7 @@ Window {
                     anchors.right: parent.right
                     anchors.margins: 10
                     color: "#FFFFFF"
-                    text: KI18n.i18n("Made by KDE")
+                    text: KI18n.i18n("Based on Kdenlive, made by KDE")
                 }
 
                 // Made By KDE
@@ -218,6 +218,7 @@ Window {
                     height: kdelabel.height
                     width: height
                     source: "qrc:/pics/kde-logo.png"
+                    visible: false
                     fillMode: Image.PreserveAspectFit
                 }
             }
@@ -624,7 +625,7 @@ Window {
                     id: kdenliveid
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
-                    text: KI18n.i18n("Kdenlive") + " " + splash.version
+                    text: KI18n.i18n("Arynwood Cutroom") + " (" + KI18n.i18n("Kdenlive") + " " + splash.version + ")"
                 }
 
             }
@@ -647,7 +648,7 @@ Window {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.right: restartButton.left
-                    text: KI18n.i18n("Kdenlive crashed on last start. Reset config and restart?")
+                    text: KI18n.i18n("Arynwood Cutroom crashed on last start. Reset config and restart?")
                     Layout.alignment: Qt.AlignVCenter
                     wrapMode: Text.Wrap
                 }
@@ -683,7 +684,7 @@ Window {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     anchors.right: notesButton.left
-                    text: KI18n.i18n("Kdenlive was upgraded. If you like it, consider <a href=\"%1\">getting involved</a> or help <a href=\"%2\">funding</a>.",
+                    text: KI18n.i18n("Arynwood Cutroom was upgraded. It is built on Kdenlive: if you like it, consider <a href=\"%1\">getting involved</a> with or <a href=\"%2\">funding</a> the Kdenlive project.",
                                "https://kdenlive.org/get-involved/?mtm_campaign=kdenlive_inapp&mtm_kwd=splash_upgraded_contribute&mtm_content=" + splash.version,
                                "https://kdenlive.org/fund/?mtm_campaign=kdenlive_inapp&mtm_kwd=splash_upgraded_donate&mtm_content=" + splash.version)
                     wrapMode: Text.Wrap
@@ -728,7 +729,7 @@ Window {
                         id: donateText
                         Layout.fillWidth: true
                         leftPadding: 10
-                        text: KI18n.i18n("Help us make Kdenlive even better")
+                        text: KI18n.i18n("Help make Kdenlive, which Cutroom is built on, even better")
                         wrapMode: Text.WordWrap
                     }
                     ToolButton {
@@ -792,7 +793,7 @@ Window {
                         Layout.fillWidth: true
                         textFormat: Text.StyledText
                         horizontalAlignment: Text.AlignJustify
-                        text: KI18n.i18n("<h3>Welcome to Kdenlive Quick Setup</h3>")
+                        text: KI18n.i18n("<h3>Welcome to Arynwood Cutroom Quick Setup</h3>")
                     }
 
                     Switch {
@@ -1036,7 +1037,7 @@ Window {
                             anchors.rightMargin: parent.radius * 2
                             Label {
                                 id: restartWelcomeLabel
-                                text: KI18n.i18n("Kdenlive crashed on last start. Reset config and restart?")
+                                text: KI18n.i18n("Arynwood Cutroom crashed on last start. Reset config and restart?")
                                 Layout.alignment: Qt.AlignVCenter
                                 wrapMode: Text.Wrap
                             }

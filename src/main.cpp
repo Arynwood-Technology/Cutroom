@@ -55,6 +55,7 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #include <QCommandLineParser>
 #include <QDir>
 #include <QIcon>
+#include <QImage>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -289,11 +290,28 @@ int main(int argc, char *argv[])
     KLocalizedString::setApplicationDomain("kdenlive");
 
     // Create KAboutData
-    QString otherText = i18n("Please report bugs to <a href=\"%1\">%2</a>", QStringLiteral("https://bugs.kde.org/enter_bug.cgi?product=kdenlive"),
-                             QStringLiteral("https://bugs.kde.org/"));
+    // Arynwood Cutroom is a modified Kdenlive, so its problems must not land in KDE's bug tracker. Only the display name and texts are
+    // changed here: the component name, desktop file and organisation domain stay as they are, because config files, the D-Bus service
+    // (org.kde.kdenlive) and the scripting tools built on it depend on them.
+    // Where problems are reported for now: the contact section of the Arynwood site, until there is a public issue tracker. This one address
+    // feeds Help → Report Bug… (see MainWindow::loadContainerActions) and both About texts below.
+    const QString bugReportUrl = QStringLiteral("https://arynwood.com/#contact");
+    QString otherText = i18n("Arynwood Cutroom is a modified version of Kdenlive. Please report problems with it to Arynwood Technology at "
+                             "<a href=\"%1\">%2</a>, not to the KDE project.",
+                             bugReportUrl, QStringLiteral("arynwood.com"));
 
-    KAboutData aboutData(QByteArray("kdenlive"), i18n("Kdenlive"), KDENLIVE_VERSION, i18n("An open source video editor."), KAboutLicense::GPL_V3,
-                         i18n("Copyright © 2007–2025 Kdenlive authors"), otherText, QStringLiteral("https://kdenlive.org"));
+    KAboutData aboutData(QByteArray("kdenlive"), i18n("Arynwood Cutroom"), KDENLIVE_VERSION,
+                         i18n("An AI-assisted video editor from Arynwood Technology, based on Kdenlive."), KAboutLicense::GPL_V3,
+                         i18n("Copyright © 2007–2025 Kdenlive authors\nCutroom changes © 2026 Lorelei Noble; D-Bus scripting API © D-Ogi"),
+                         otherText, QStringLiteral("https://arynwood.com"), bugReportUrl);
+    // Without this the Authors tab builds a "mailto:" link out of the bug address, which is a web address here.
+    aboutData.setCustomAuthorText(i18n("Please report problems with Arynwood Cutroom at %1, not to the KDE project.", bugReportUrl),
+                                  i18n("Please report problems with Arynwood Cutroom at <a href=\"%1\">arynwood.com</a>, not to the KDE project.", bugReportUrl));
+    // Cutroom additions come first; the upstream Kdenlive credits below are kept exactly as they were.
+    aboutData.addAuthor(i18n("Lorelei Noble"), i18n("Arynwood Cutroom: the assistant panel, MCP tooling and branding"), QStringLiteral("lorelei@arynwood.com"),
+                        QStringLiteral("https://arynwood.com"));
+    aboutData.addCredit(i18n("D-Ogi"), i18n("The D-Bus scripting API of the Kdenlive fork that Cutroom is built on"), QString(),
+                        QStringLiteral("https://github.com/D-Ogi/kdenlive"));
     // main developers (alphabetical)
     aboutData.addAuthor(i18n("Jean-Baptiste Mardelle"), i18n("Core team member, main developer and maintainer, MLT, and KDE SC 4 / KF5 port"), QStringLiteral("jb@kdenlive.org"));
     // active developers with major involvement
@@ -317,9 +335,11 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Massimo Stella"), i18n("Core team member, expert advice, testing"));
 
     aboutData.setTranslator(i18n("NAME OF TRANSLATORS"), i18n("EMAIL OF TRANSLATORS"));
-    aboutData.setOrganizationDomain(QByteArray("kde.org"));
+aboutData.setOrganizationDomain(QByteArray("kde.org"));
 
-    aboutData.addComponent(aboutData.displayName(), QString(), KDENLIVE_FULL_VERSION_STRING, aboutData.homepage());
+    // The credit that the GPL and Kdenlive's own name call for: what this program is built on, and which version.
+    aboutData.addComponent(i18n("Kdenlive"), i18n("The video editor Arynwood Cutroom is based on."), KDENLIVE_FULL_VERSION_STRING,
+                           QStringLiteral("https://kdenlive.org"));
 
     aboutData.addComponent(i18n("MLT"), i18n("Open source multimedia framework."), mlt_version_get_string(),
                            QStringLiteral("https://mltframework.org") /*, KAboutLicense::LGPL_V2_1*/);
@@ -327,11 +347,12 @@ int main(int argc, char *argv[])
                            QString::fromLocal8Bit(av_version_info()), QStringLiteral("https://ffmpeg.org"));
 
     aboutData.setDesktopFileName(QStringLiteral("org.kde.kdenlive"));
+    aboutData.setProgramLogo(QImage(QStringLiteral(":/pics/arynwood-logo.png")));
 
     // Set application data
     KAboutData::setApplicationData(aboutData);
 #ifndef Q_OS_MACOS // skip this on macOS to have proper mime-type icon visible
-    app.setWindowIcon(QIcon(QStringLiteral(":/pics/kdenlive.png")));
+    app.setWindowIcon(QIcon(QStringLiteral(":/pics/arynwood-logo.png")));
 #endif
 
     app.setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);

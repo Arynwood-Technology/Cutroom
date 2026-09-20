@@ -28,6 +28,11 @@ class LayoutManagement : public QObject
 public:
     explicit LayoutManagement(QObject *parent);
 
+    /** @brief Adds a widget to the top right corner of the menu bar, on the left of the autosave indicator and the layout switcher, which
+     *  keep their places at the right edge. Qt gives a menu bar one widget per corner, so anything else that wants to live there has to
+     *  share this container. */
+    void addCornerWidget(QWidget *widget);
+
 public Q_SLOTS:
     /** @brief Loads a layout by LayoutInfo. */
     bool slotLoadLayout(LayoutInfo layout, bool onlyIfNoPrevious = false);

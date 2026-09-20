@@ -126,6 +126,13 @@ LayoutManagement::LayoutManagement(QObject *parent)
     initializeLayouts();
 }
 
+void LayoutManagement::addCornerWidget(QWidget *widget)
+{
+    auto *layout = qobject_cast<QHBoxLayout *>(m_container->layout());
+    Q_ASSERT(layout);
+    layout->insertWidget(layout->indexOf(m_autosaveContainer), widget, 0, Qt::AlignVCenter);
+}
+
 void LayoutManagement::startAutoSave()
 {
     m_autosaveContainer->setAutoFillBackground(true);

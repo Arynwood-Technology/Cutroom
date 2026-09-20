@@ -1,0 +1,11 @@
+The Arynwood tree logo (data/pics/arynwood-logo.png) is artwork of Lorelei Noble
+(Arynwood Technology).
+
+It is not program code, and it is not licensed under the GNU General Public
+License or under any other open licence. All rights are reserved. It is included
+in this tree only so that Arynwood Cutroom shows its own branding. No permission
+has been granted to use it in other works, or in modified versions of this
+program.
+
+DRAFT NOTICE: the wording of this file has not been reviewed by counsel and is
+to be settled together with the open questions in the project's NOTICE files.

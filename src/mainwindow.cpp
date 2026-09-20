@@ -10,6 +10,7 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include "aichat/aiassistantwidget.h"
 #include "assets/assetpanel.hpp"
 #include "assets/keyframes/model/keyframemodel.hpp"
 #include "assets/keyframes/model/keyframemodellist.hpp"
@@ -123,9 +124,11 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #include <KXMLGUIFactory>
 
 #include <KConfigGroup>
+#include <KSharedConfig>
 #include <QAction>
 #include <QClipboard>
 #include <QCollator>
+#include <QElapsedTimer>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
 #include <QFileDialog>
@@ -137,6 +140,8 @@ SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 #include <QStandardPaths>
 #include <QStatusBar>
 #include <QStyleFactory>
+#include <QTimer>
+#include <QToolButton>
 #include <QUndoGroup>
 #include <QVBoxLayout>
 #include <QtConcurrent/QtConcurrentRun>
@@ -192,6 +197,14 @@ void MainWindow::init()
     QString desktopStyle = QApplication::style()->objectName();
     // Load themes
     auto themeManager = KColorSchemeManager::instance();
+    // Arynwood Cutroom starts in its purple scheme. This is done once, and the manager remembers whatever is chosen from the Color Theme
+    // menu after that, so a user's own choice is never overridden on later starts.
+    KConfigGroup brandingGroup(KSharedConfig::openConfig(), QStringLiteral("Branding"));
+    if (!brandingGroup.readEntry("DefaultSchemeApplied", false)) {
+        themeManager->activateScheme(themeManager->indexForScheme(QStringLiteral("Purple")));
+        brandingGroup.writeEntry("DefaultSchemeApplied", true);
+        brandingGroup.sync();
+    }
     KActionMenu *colorSelectionMenu = KColorSchemeMenu::createMenu(themeManager, this);
     actionCollection()->addAction(QStringLiteral("themes_menu"), colorSelectionMenu);
 
@@ -291,6 +304,55 @@ void MainWindow::init()
 
     auto dockText = addDock(i18n("Speech Editor"), QStringLiteral("textedit"), pCore->textEditWidget(), KDDockWidgets::Location_OnRight);
     dockText->close();
+
+    // Created closed, like the docks around it; its network checks only run once it is shown. The shipped layouts and any the user has saved
+    // don't list it, so opening it leaves a floating window. A dock that has just been opened, and is floating once its window has settled, is
+    // put into the Clip Monitor group: the chat wants room, and that group is the one least needed while talking to it. A dock the user drags
+    // out later is left where they put it.
+    auto *assistant = new AiChat::AssistantWidget(this);
+    auto dockAssistant = addDock(i18n("Cutroom Assistant"), QStringLiteral("cutroom_assistant"), assistant, KDDockWidgets::Location_OnRight);
+    dockAssistant->close();
+    auto assistantOpenedAt = std::make_shared<QElapsedTimer>();
+    auto tabAssistant = [this, dockAssistant, assistantOpenedAt]() {
+        auto *controller = dockAssistant->asDockWidgetController();
+        qDebug() << "Cutroom Assistant dock: open" << controller->isOpen() << "floating" << controller->isFloating() << "recently opened"
+                 << (assistantOpenedAt->isValid() && assistantOpenedAt->elapsed() < 2000);
+        if (assistantOpenedAt->isValid() && assistantOpenedAt->elapsed() < 2000 && controller->isOpen() && controller->isFloating()) {
+            assistantOpenedAt->invalidate();
+            m_clipMonitorDock->addDockWidgetAsTab(dockAssistant);
+        }
+    };
+    connect(dockAssistant, &KDDockWidgets::QtWidgets::DockWidget::isOpenChanged, this, [this, assistantOpenedAt, tabAssistant](bool open) {
+        if (open) {
+            assistantOpenedAt->start();
+            // The window is created after this signal, so look again once it has settled.
+            QTimer::singleShot(0, this, tabAssistant);
+            QTimer::singleShot(300, this, tabAssistant);
+        }
+    });
+    connect(dockAssistant, &KDDockWidgets::QtWidgets::DockWidget::isFloatingChanged, this, [this, tabAssistant](bool floating) {
+        if (floating) {
+            QTimer::singleShot(0, this, tabAssistant);
+        }
+    });
+
+    // The way in to the panel: a labelled button in the top right corner of the menu bar, beside the layout switcher, wearing the Arynwood
+    // tree. It opens the panel, or brings it to the front if it is already open, and leaves the cursor in the message box.
+    auto *launchAssistant = new QAction(QIcon(QStringLiteral(":/pics/arynwood-logo.png")), i18n("Launch Assistant"), this);
+    launchAssistant->setToolTip(i18n("Open the Cutroom Assistant: chat with an AI model that edits your project"));
+    connect(launchAssistant, &QAction::triggered, this, [dockAssistant, assistant]() {
+        const bool wasOpen = dockAssistant->asDockWidgetController()->isOpen();
+        dockAssistant->open();
+        dockAssistant->setAsCurrentTab();
+        // A dock that has only just been opened is still being tabbed into the Clip Monitor group (see above); take the focus after that.
+        QTimer::singleShot(wasOpen ? 0 : 400, assistant, [assistant]() { assistant->focusInput(); });
+    });
+    actionCollection()->addAction(QStringLiteral("launch_cutroom_assistant"), launchAssistant);
+    auto *launchAssistantButton = new QToolButton;
+    launchAssistantButton->setDefaultAction(launchAssistant);
+    launchAssistantButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    launchAssistantButton->setIconSize(QSize(style()->pixelMetric(QStyle::PM_ToolBarIconSize), style()->pixelMetric(QStyle::PM_ToolBarIconSize)));
+    layoutManager->addCornerWidget(launchAssistantButton);
 
     auto dockRemap = addDock(i18n("Time Remapping"), QStringLiteral("timeremap"), pCore->timeRemapWidget(), KDDockWidgets::Location_OnRight);
     dockRemap->close();
@@ -1036,6 +1098,13 @@ void MainWindow::loadContainerActions()
     if (helpMenu) {
         QAction *whatsThis = actionCollection()->action(KStandardAction::name(KStandardAction::WhatsThis));
         helpMenu->insertAction(whatsThis, officialHelp);
+    }
+
+    // Help → Report Bug… opens KDE's dialog, which is hard-wired to bugs.kde.org. Problems with this modified version go to Arynwood
+    // instead: to the address in the About data. Help → Donate is left as it is, on purpose, so donations still reach the Kdenlive project.
+    if (QAction *reportBug = actionCollection()->action(KStandardAction::name(KStandardAction::ReportBug))) {
+        disconnect(reportBug, &QAction::triggered, nullptr, nullptr);
+        connect(reportBug, &QAction::triggered, this, []() { QDesktopServices::openUrl(QUrl(KAboutData::applicationData().bugAddress())); });
     }
 
     // rebuild timeline clip menu

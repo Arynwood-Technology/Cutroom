@@ -96,7 +96,7 @@ Window {
                 id: background
                 anchors.fill: parent
                 anchors.margins: 5
-                source: "qrc:/pics/splash-background.webp"
+                source: "qrc:/pics/arynwood-splash.png"
                 verticalAlignment: Image.AlignTop
                 fillMode: Image.PreserveAspectCrop
                 // Made By KDE
@@ -109,13 +109,14 @@ Window {
                     height: kdelabel.height
                     width: height
                     source: "qrc:/pics/kde-logo.png"
+                    visible: false
                     fillMode: Image.PreserveAspectFit
                 }
                 Label {
                     id: kdelabel
                     anchors.verticalCenter: kdelogo.verticalCenter
                     anchors.left: kdelogo.right
-                    text: KI18n.i18n("Made by KDE")
+                    text: KI18n.i18n("Based on Kdenlive, made by KDE")
                     color: "#ffffff"
                 }
             }
@@ -143,7 +144,7 @@ Window {
             anchors.right: buttonBar.right
             anchors.rightMargin: 10
             anchors.verticalCenter: buttonBar.verticalCenter
-            text: KI18n.i18n("Kdenlive") + " " + splash.version
+            text: KI18n.i18n("Arynwood Cutroom") + " (" + KI18n.i18n("Kdenlive") + " " + splash.version + ")"
         }
         MouseArea {
             anchors.fill: parent
@@ -193,7 +194,7 @@ Window {
                 anchors.leftMargin: 10
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: restartButton.left
-                text: KI18n.i18n("Kdenlive crashed on last start.")
+                text: KI18n.i18n("Arynwood Cutroom crashed on last start.")
                 Layout.alignment: Qt.AlignVCenter
                 wrapMode: Text.Wrap
             }
@@ -275,7 +276,7 @@ Window {
                 anchors.leftMargin: 10
                 anchors.right: notesButton.left
                 textFormat: Text.RichText
-                text: KI18n.i18n("Kdenlive was upgraded. If you like it, consider <a href=\"%1\">getting involved</a> or help <a href=\"%2\">funding</a>.",
+                text: KI18n.i18n("Arynwood Cutroom was upgraded. It is built on Kdenlive: if you like it, consider <a href=\"%1\">getting involved</a> with or <a href=\"%2\">funding</a> the Kdenlive project.",
                            "https://kdenlive.org/get-involved/?mtm_campaign=kdenlive_inapp&mtm_kwd=splash_upgraded_contribute&mtm_content=" + splash.version,
                            "https://kdenlive.org/fund/?mtm_campaign=kdenlive_inapp&mtm_kwd=splash_upgraded_donate&mtm_content=" + splash.version)
                 wrapMode: Text.Wrap

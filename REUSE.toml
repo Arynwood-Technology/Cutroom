@@ -121,6 +121,12 @@ SPDX-FileCopyrightText = "Farid Abdelnour"
 SPDX-License-Identifier = "LGPL-3.0-or-later"
 
 [[annotations]]
+path = ["data/pics/arynwood-logo.png", "data/pics/arynwood-splash.png"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Lorelei Noble"
+SPDX-License-Identifier = "LicenseRef-Arynwood-Logo"
+
+[[annotations]]
 path = "data/pics/kde-logo.png"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "KDE project"

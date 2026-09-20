@@ -24,3 +24,7 @@ compile_commands.json
 
 # Artefacts from running KDE CI locally
 kde-ci-reports/*
+
+# Separate repositories that live inside this working tree
+/kdenlive-api/
+/mcp-kdenlive/

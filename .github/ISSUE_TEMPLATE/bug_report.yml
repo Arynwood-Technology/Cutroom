@@ -1,0 +1,81 @@
+# SPDX-FileCopyrightText: 2026 Arynwood Technology
+# SPDX-License-Identifier: CC0-1.0
+
+name: Bug report
+description: Something in Arynwood Cutroom does not work as it should
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. Arynwood Cutroom is an early alpha. Please report problems here, not to the KDE project, which does not support this modified version. **Do not report security problems here**; see SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Help → About Arynwood Cutroom (the Cutroom version and the Kdenlive version it is based on).
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How it was installed
+      options:
+        - Flatpak built from source
+        - Flatpak bundle from a release
+        - Built from source without flatpak
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system
+      description: For example Ubuntu 24.04, Fedora 42.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where does it happen?
+      options:
+        - The Cutroom Assistant panel
+        - The scripting interface or tool server (mcp-kdenlive)
+        - Editing, timeline, effects or rendering (the Kdenlive part)
+        - Installing or starting
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Does it also happen in stock Kdenlive?
+      options:
+        - Not checked
+        - Yes
+        - No
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. ... 2. ... 3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened instead
+    validations:
+      required: true
+  - type: textarea
+    id: assistant
+    attributes:
+      label: If the assistant was involved
+      description: Which model and provider (Ollama or an OpenAI-compatible service), what you asked, and what it did. Remove anything private from the transcript first.
+  - type: textarea
+    id: debug
+    attributes:
+      label: Debug information
+      description: Help → Copy Debug Information, pasted here. Check it for personal paths first.
+      render: text

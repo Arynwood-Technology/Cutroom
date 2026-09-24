@@ -6,6 +6,8 @@ An AI-assisted video editor from [Arynwood Technology](https://arynwood.com), bu
 Describe an edit in plain language and the **Cutroom Assistant**, a chat panel inside the editor, carries it out on your
 timeline: with a model that runs on your own machine, and asking before it changes anything.
 
+**Website:** [arynwood.com/cutroom](https://arynwood.com/cutroom/) · **Setup:** [SETUP.md](SETUP.md) · **Help with a Kdenlive workflow:** [Arynwood setup services](https://arynwood.com/#services)
+
 Arynwood Cutroom is a modified version of Kdenlive. It is not made or endorsed by the KDE project or the Kdenlive team.
 It is built on the [D-Ogi/kdenlive](https://github.com/D-Ogi/kdenlive) fork, whose D-Bus scripting API everything below
 depends on.

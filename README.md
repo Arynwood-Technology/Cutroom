@@ -12,9 +12,23 @@ Arynwood Cutroom is a modified version of Kdenlive. It is not made or endorsed b
 It is built on the [D-Ogi/kdenlive](https://github.com/D-Ogi/kdenlive) fork, whose D-Bus scripting API everything below
 depends on.
 
-> **Status: working alpha, Linux only, build from source.** There are no published binaries yet. The assistant works end
-> to end in testing, but small local models are unreliable at multi-step edits (see [Limits](#limits-read-this-first)).
-> Nothing here is a stable release.
+> **Status: working alpha, Linux only.** Version 0.1.0 of the editor is a Flatpak on the [releases page](https://github.com/Arynwood-Technology/Cutroom/releases/tag/v0.1.0).
+> The assistant works end to end in testing, but it needs the `mcp-kdenlive` tool server, which is not published yet, so
+> it can't run from the download (see [Python API and MCP server](#python-api-and-mcp-server)). Small local models are
+> also unreliable at multi-step edits (see [Limits](#limits-read-this-first)). Nothing here is a stable release.
+
+## Install
+
+Download `Cutroom-0.1.0-x86_64.flatpak` and `SHA256SUMS.txt` from the [0.1.0 release](https://github.com/Arynwood-Technology/Cutroom/releases/tag/v0.1.0), then:
+
+```bash
+sha256sum -c SHA256SUMS.txt
+flatpak install --user ./Cutroom-0.1.0-x86_64.flatpak
+flatpak run com.arynwood.Cutroom
+```
+
+The bundle pulls the KDE 6.11 runtime from Flathub on first install, and its own application ID
+(`com.arynwood.Cutroom`) lets it sit beside a regular Kdenlive.
 
 ## What Cutroom adds to Kdenlive
 
@@ -24,7 +38,7 @@ depends on.
   driving the editor from Python, the command line or any D-Bus client. See [below](#d-bus-scripting-api).
 - **An MCP tool server, `mcp-kdenlive`**: 183 tools that an AI agent can call to operate the editor (import, cut,
   arrange, transitions, effects, keyframes, render). The assistant uses it, and so can Claude Code, Claude Desktop or your
-  own scripts.
+  own scripts. Not published yet; see [Python API and MCP server](#python-api-and-mcp-server).
 - **More Creative Commons media sources**: Jamendo (music) and Openverse, on top of Kdenlive's own providers.
 - **A JavaScript expression engine** for keyframes and two **libplacebo** GPU effects (from D-Ogi's fork).
 - **Its own identity**: name, About box, splash, the Arynwood tree, and a purple default colour scheme. Kdenlive is
@@ -50,8 +64,8 @@ assistant calls the editor's tools to do it.
   anything important first.
 
 **What you need running:** the editor, Ollama (or another endpoint) with a model that supports tool calling, and the
-`mcp-kdenlive` tool server on `127.0.0.1:8420`. The tool server is a separate process and is **not** bundled into the
-flatpak yet. Step-by-step setup is in [SETUP.md](SETUP.md); the panel's design is in [src/aichat/README.md](src/aichat/README.md).
+`mcp-kdenlive` tool server on `127.0.0.1:8420`. The tool server is a separate process and is **not** published or
+bundled into the flatpak yet. Step-by-step setup is in [SETUP.md](SETUP.md); the panel's design is in [src/aichat/README.md](src/aichat/README.md).
 
 ## Limits: read this first
 

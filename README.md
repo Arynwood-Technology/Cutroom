@@ -2,6 +2,8 @@
 
 # Arynwood Cutroom
 
+[![Latest pre-release](https://img.shields.io/github/v/release/Arynwood-Technology/Cutroom?include_prereleases)](https://github.com/Arynwood-Technology/Cutroom/releases)
+
 An AI-assisted video editor from [Arynwood Technology](https://arynwood.com), built on [Kdenlive](https://kdenlive.org).
 Describe an edit in plain language and the **Cutroom Assistant**, a chat panel inside the editor, carries it out on your
 timeline: with a model that runs on your own machine, and asking before it changes anything.
@@ -12,7 +14,7 @@ Arynwood Cutroom is a modified version of Kdenlive. It is not made or endorsed b
 It is built on the [D-Ogi/kdenlive](https://github.com/D-Ogi/kdenlive) fork, whose D-Bus scripting API everything below
 depends on.
 
-> **Status: working alpha, Linux only.** Version 0.1.0 of the editor is a Flatpak on the [releases page](https://github.com/Arynwood-Technology/Cutroom/releases/tag/v0.1.0).
+> **Status: working alpha, Linux only.** The v0.1.0 pre-release (2026-10-12) of the editor is a Flatpak on the [releases page](https://github.com/Arynwood-Technology/Cutroom/releases/tag/v0.1.0).
 > The assistant works end to end in testing, but it needs the `mcp-kdenlive` tool server, which is not published yet, so
 > it can't run from the download (see [Python API and MCP server](#python-api-and-mcp-server)). Small local models are
 > also unreliable at multi-step edits (see [Limits](#limits-read-this-first)). Nothing here is a stable release.
@@ -170,3 +172,10 @@ Additional build requirements:
 
 For general Kdenlive information, features, and downloads visit [kdenlive.org](https://kdenlive.org).
 Upstream source: [KDE Invent](https://invent.kde.org/multimedia/kdenlive) / [GitHub mirror](https://github.com/KDE/kdenlive).
+
+## How this is built
+
+The editor is Kdenlive, by the KDE community, with the D-Bus scripting API from D-Ogi's fork.
+Cutroom's own changes are mine: I decide their scope, review them, run the available checks and
+ship releases. Claude Code and Codex work with me as pair programmers; some assisted commits carry
+co-author trailers, and others do not. [How we build](https://github.com/Arynwood-Technology/.github/blob/main/HOW-WE-BUILD.md).

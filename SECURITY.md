@@ -7,9 +7,10 @@
 
 ## Reporting a vulnerability
 
-Please report security problems **privately**, not in a public issue:
-<https://arynwood.com/#contact>. Say which version you have (Help → About) and how to
-reproduce the problem. Arynwood Cutroom is an early alpha maintained by a very small team, so
+Please report security problems **privately**, not in a public issue, through GitHub's
+private vulnerability reporting:
+<https://github.com/Arynwood-Technology/Cutroom/security/advisories/new>. Say which version
+you have (Help → About) and how to reproduce the problem. Arynwood Cutroom is an early alpha maintained by a very small team, so
 there is no guaranteed response time, but reports are read and taken seriously.
 
 Only the latest alpha is supported.

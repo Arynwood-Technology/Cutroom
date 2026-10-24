@@ -4,8 +4,7 @@
 
 [![Latest pre-release](https://img.shields.io/github/v/release/Arynwood-Technology/Cutroom?include_prereleases)](https://github.com/Arynwood-Technology/Cutroom/releases)
 
-An AI-assisted video editor built on Kdenlive, using a local model and asking before changes.
-From [Arynwood Technology](https://arynwood.com), based on [Kdenlive](https://kdenlive.org).
+An AI-assisted video editor from [Arynwood Technology](https://arynwood.com), built on [Kdenlive](https://kdenlive.org).
 Describe an edit in plain language and the **Cutroom Assistant**, a chat panel inside the editor, carries it out on your
 timeline: with a model that runs on your own machine, and asking before it changes anything.
 
@@ -176,6 +175,7 @@ Upstream source: [KDE Invent](https://invent.kde.org/multimedia/kdenlive) / [Git
 
 ## How this is built
 
-I decide the scope and architecture, review changes, run the available checks and ship releases.
-Claude Code and Codex work with me as pair programmers; some assisted commits carry
+The editor is Kdenlive, by the KDE community, with the D-Bus scripting API from D-Ogi's fork.
+Cutroom's own changes are mine: I decide their scope, review them, run the available checks and
+ship releases. Claude Code and Codex work with me as pair programmers; some assisted commits carry
 co-author trailers, and others do not. [How we build](https://github.com/Arynwood-Technology/.github/blob/main/HOW-WE-BUILD.md).
